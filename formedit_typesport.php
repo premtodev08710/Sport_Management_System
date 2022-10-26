@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-
 <?php
 
 if (!$_SESSION["UserID"]) {  //check session
@@ -49,8 +48,7 @@ if (!$_SESSION["UserID"]) {  //check session
             </div>
             <!-- Sidebar End -->
 
-            <?php echo $_GET["member_id"];
-            include 'navbar.php'; ?>
+            <?php include 'navbar.php'; ?>
 
 
 
@@ -60,50 +58,50 @@ if (!$_SESSION["UserID"]) {  //check session
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">รายงานประเภทอุปกรณ์</h6>
-                        <a href="forminsert_typesport.php"><button class='btn btn-sm btn-success'>เพิ่มประเภท</button></a>
+                        <form action="update_typesport.php" method="post">
+                            <button class='btn btn-sm btn-success'>บันทึก</button></a>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">ลำดับ</th>
-                                    <th scope="col">ชื่อประเภท</th>
-                                    <th scope="col">สถาณะ</th>
-                                    <th scope="col">แก้ไข\ลบ </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <?php include 'connection.php';
-                                    $sql = "SELECT * FROM `type_sport`";
-                                    $result = $con->query($sql);
-                                    $num = 0;
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while ($row = $result->fetch_assoc()) {
-                                            // $id = ; 
-                                    ?>
-                                            <td><?php $num = $num + 1;
-                                                echo $num; ?></td>
-                                            <td><?php echo $row["name"]; ?></td>
-                                            <td><?php if ($row["status"] == 1) {
-                                                    echo 'ใช้งาน';
-                                                } else {
-                                                    echo 'ปิดใช้งาน';
-                                                } ?></td>
-                                            <td><a href="formedit_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                                <a class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>">ลบ</a>
-                                            </td>
+                    <?php include 'connection.php';
+                    $id = $_GET['typesport_id'];
+                    $sql = "SELECT * FROM `type_sport` where typesport_id =$id ";
+                    $result = $con->query($sql);
+                    $num = 0;
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                            // $id = ; 
+                    ?>
+                            <div class="col-sm-12 col-xl-12">
+                                <div class="bg-light rounded h-100 p-4">
+                                    <h6 class="mb-4">แก้ไขประเภทอุปกรณ์กีฬา</h6>
 
-                                </tr>
-                        <?php  }
-                                    } else {
-                                        echo "0 results";
-                                    }
-                                    $con->close(); ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="name" value="<?php echo $row["name"]; ?>" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">ชื่อประเภทอุปกรณ์กีฬา</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-check">
+                                            <input type="hidden" name="typesport_id" value="<?php echo $row['typesport_id']?>" id="">
+                                            <input class="form-check-input" type="radio" value="0" <?php  if( $row['status'] == 0 ){echo 'checked';}?>  name="satatus" id="satatus1">
+                                            <label class="form-check-label" for="satatus1">
+                                               ปิดใช้งาน
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="1" <?php  if( $row['status'] == 1 ){echo 'checked';}?> name="satatus" id="satatus2">
+                                            <label class="form-check-label" for="satatus2">
+                                                เปิดใช้งาน
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </form>
+                            <?php  }
+                    } else {
+                        echo "0 results";
+                    }
+                    $con->close(); ?>
+                                </div>
+                            </div>
                 </div>
             </div>
             <!-- Recent Sales End -->
