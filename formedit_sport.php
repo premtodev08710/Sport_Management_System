@@ -76,7 +76,7 @@ if (!$_SESSION["UserID"]) {  //check session
                             ?>
 
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="sport_id" value="<?php echo $row['sport_id']; ?>">
+                                        <input type="hidden" name="sport_id" value="<?php echo $row['sport_id']; ?>">
                                         <input type="text" value="<?php echo $row["sport_name"]; ?>" name="sport_name" class="form-control" id="floatingInput">
                                         <label for="floatingInput">ชื่ออุปกรณ์กีฬา</label>
                                     </div>
