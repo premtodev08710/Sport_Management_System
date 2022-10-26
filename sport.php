@@ -50,7 +50,7 @@
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">รายการอุปกรณ์</h6>
-                    <a href=""><button class="btn btn-sm btn-success">เพิ่มอุปกรณ์</button></a>
+                    <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">เพิ่มอุปกรณ์</button></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -65,17 +65,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php include 'connection.php';
+                                    $sql = "SELECT * FROM sports_equipment INNER JOIN type_sport ON sports_equipment.typesport_id = type_sport.typesport_id  ";
+                                    $result = $con->query($sql);
+                                    $num = 1;
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $result->fetch_assoc()) {
+                                            // $id = ; 
+                                    ?>
                             <tr>
-                                <td>1</td>
-                                <td>บอล</td>
-                                <td>01</td>
-                                <td>1</td>
-                                <td>10</td>
-                                <td><a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                    <a class="btn btn-sm btn-danger" href="">ลบ</a>
+                                <td><?php echo $num++; ?></td>
+                                <td><?php echo $row['sport_name'] ?></td>
+                                <td><?php echo $row['name'] ?></td>
+                                <td><?php echo $row['balance'] ?></td>
+                                <td><?php echo $row['number'] ?></td>
+                                <td><a href="formedit_sport.php?sport_id=<?php echo $row["sport_id"];?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                                <a  class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_sport.php?sport_id=<?php echo $row["sport_id"];?>">ลบ</a>
+                                                
                                 </td>
                             </tr>
-
+                            <?php  }
+                                    } else {
+                                        echo "0 results";
+                                    }
+                                    $con->close(); ?>
                         </tbody>
                     </table>
                 </div>

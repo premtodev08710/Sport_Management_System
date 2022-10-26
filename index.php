@@ -1,3 +1,12 @@
+
+<?php session_start();?>
+<?php 
+ 
+if (!$_SESSION["UserID"]){  //check session
+ 
+	  Header("Location: form.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
+ 
+}else{?>
 <?php include 'head.php'; ?>
 
 <body>
@@ -23,7 +32,7 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
+                        <h6 class="mb-0"><?php echo $_SESSION["User"];?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -128,4 +137,4 @@
         <!-- Recent Sales End -->
 
 
-        <?php include 'footer.php'; ?>
+        <?php include 'footer.php'; }?>
