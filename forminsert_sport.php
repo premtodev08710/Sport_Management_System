@@ -3,7 +3,7 @@
 
 if (!$_SESSION["UserID"]) {  //check session
 
-    Header("Location: form.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
+    Header("Location: signin.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 
 } else { ?>
     <?php include 'head.php'; ?>

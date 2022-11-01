@@ -1,12 +1,12 @@
-<?php session_start(); ?>
 
-<?php
-
-if (!$_SESSION["UserID"]) {  //check session
-
-    Header("Location: form.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
-
-} else { ?>
+<?php session_start();?>
+<?php 
+ 
+if (!$_SESSION["UserID"]){  //check session
+ 
+	  Header("Location: signin.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
+ 
+}else{?>
     <?php include 'head.php'; ?>
 
     <body>
@@ -49,7 +49,8 @@ if (!$_SESSION["UserID"]) {  //check session
             </div>
             <!-- Sidebar End -->
 
-            <?php echo $_GET["member_id"];
+            <?php
+            //  echo $_GET["member_id"];
             include 'navbar.php'; ?>
 
 
