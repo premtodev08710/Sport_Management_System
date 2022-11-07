@@ -59,7 +59,7 @@ if (!$_SESSION["UserID"]) {  //check session
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">รายงานการยืม-คืน</h6>
                         <!-- <a href="">Show All</a> -->
-                        <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">ยืม</button></a>
+                        <a href="forminsert_borrow.php"><button class="btn btn-sm btn-success">ยืม</button></a>
 
                     </div>
                     <div class="table-responsive">
@@ -97,7 +97,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                         <!--  -->
                                         <tr>
                                             <td><?= $num += 1 ?></td>
-                                            <td><?= $row['Firstname'] . ' ' . $row['Firstname'] ?></td>
+                                            <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
                                             <td><?= $row['start_date'] ?></td>
                                             <td><?= $row['number'] ?></td>
 

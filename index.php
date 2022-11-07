@@ -54,21 +54,36 @@ if (!$_SESSION["UserID"]) {  //check session
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
+
+                    <?php
+                    $sqlborrow1 = "SELECT * FROM borrow ";
+                    $resultborrow1 = $con->query($sqlborrow1);
+
+                    $rowcountborrow1 = mysqli_num_rows($resultborrow1);
+
+                    ?>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">รายการยืม/คืน</p>
-                                <h6 class="mb-0">????</h6>
+                                <h6 class="mb-0"><?= $rowcountborrow1 ?></h6>
                             </div>
                         </div>
                     </div>
+                    <?php
+                    $sqlborrow = "SELECT * FROM borrow where status = 1";
+                    $resultborrow = $con->query($sqlborrow);
+
+                    $rowcountborrow = mysqli_num_rows($resultborrow);
+
+                    ?>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">รายการค้างคืน</p>
-                                <h6 class="mb-0">????</h6>
+                                <h6 class="mb-0"><?= $rowcountborrow ?></h6>
                             </div>
                         </div>
                     </div>
@@ -76,8 +91,8 @@ if (!$_SESSION["UserID"]) {  //check session
                     $sqluser = "SELECT * FROM user";
                     $resultuser = $con->query($sqluser);
 
-                    $rowcountuser = mysqli_num_rows( $resultuser );
-                    
+                    $rowcountuser = mysqli_num_rows($resultuser);
+
                     ?>
 
                     <div class="col-sm-6 col-xl-3">
@@ -93,8 +108,8 @@ if (!$_SESSION["UserID"]) {  //check session
                     $sql = "SELECT * FROM sports_equipment";
                     $result = $con->query($sql);
 
-                    $rowcount = mysqli_num_rows( $result );
-                    
+                    $rowcount = mysqli_num_rows($result);
+
                     ?>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
@@ -110,40 +125,66 @@ if (!$_SESSION["UserID"]) {  //check session
             <!-- Sale & Revenue End -->
 
 
-            <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Recent Salse</h6>
-                        <a href="">Show All</a>
+                        <h6 class="mb-0">รายงานการยืม-คืน</h6>
+                        <!-- <a href="">Show All</a> -->
+                        <!-- <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">ยืม</button></a> -->
+
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                                    <th scope="col">รหัสผู้ยืม</th>
-                                    <th scope="col">ชื่อผู้ยืม</th>
+                                    <th scope="col">ลำดับ</th>
+                                    <th scope="col">ชื่อ</th>
                                     <th scope="col">วันที่ยืม</th>
-                                    <th scope="col">กำกนดคืน</th>
+                                    <th scope="col">จำนวนที่ยืม</th>
+
                                     <th scope="col">สถาณะ</th>
-                                    <!-- <th scope="col">Action</th> -->
+                                    <th scope="col">แก้ไข\ลบ </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
 
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>01 Jan 2022</td>
-                                    <td>01 Jan 2022</td>
+                                <?php include 'connection.php';
 
-                                    <td><a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                        <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                    </td>
-                                </tr>
+                                $sql = "
+                                    SELECT borrow.borrow_id,borrow.student_id,borrow.sport_id,borrow.start_date,borrow.end_date 
+                                    ,borrow.number, borrow.status ,user.Firstname ,user.Lastname ,
+                                    sports_equipment.sport_name ,sports_equipment.sport_name FROM borrow 
+                                    INNER JOIN user on borrow.student_id = user.student_id 
+                                    INNER JOIN sports_equipment on borrow.sport_id = sports_equipment.sport_id
+                                    where borrow.status = 0";
+                                $result = $con->query($sql);
+                                $num = 0;
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while ($row = $result->fetch_assoc()) {
+                                        // $id = ; 
+                                ?>
 
+                                        <!--  -->
+                                        <tr>
+                                            <td><?= $num += 1 ?></td>
+                                            <td><?= $row['Firstname'] . ' ' . $row['Firstname'] ?></td>
+                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['number'] ?></td>
+
+                                            <td><?php if ($row['status'] == 0) {
+                                                    echo 'ยังไม่ได้รับคืน';
+                                                } ?></td>
+                                            <td>
+                                                <a class="btn btn-primary m-2" href="editborrow.php?sport_id=<?= $row['sport_id']; ?>&borrow_id=<?= $row['borrow_id'] ?>&number=<?= $row["number"]; ?>">รับคืน</a>
+                                                <a class="btn btn-warning m-2" href="formedit_borrow.php?borrow_id=<?php echo $row["borrow_id"]; ?>">แก้ไข</a>
+                                            </td>
+                                        </tr>
+                                <?php  }
+                                } else {
+                                    // echo "0 results";
+                                }
+                                $con->close(); ?>
                             </tbody>
                         </table>
                     </div>

@@ -6,7 +6,8 @@ if (!$_SESSION["UserID"]) {  //check session
     Header("Location: signin.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
 
 } else { ?>
-    <?php include 'head.php'; ?>
+    <?php include 'head.php';
+    include 'connection.php'; ?>
 
     <body>
         <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -23,7 +24,7 @@ if (!$_SESSION["UserID"]) {  //check session
             <div class="sidebar pe-4 pb-3">
                 <nav class="navbar bg-light navbar-light">
                     <a href="index.html" class="navbar-brand mx-4 mb-3">
-                        <h3 class="text-primary">ระบบยืม-คืน</h3>
+                        <h3 class="text-primary">ระบบยืม-คืน </h3>
                     </a>
                     <div class="d-flex align-items-center ms-4 mb-4">
                         <div class="position-relative">
@@ -32,33 +33,33 @@ if (!$_SESSION["UserID"]) {  //check session
                         </div>
                         <div class="ms-3">
                             <h6 class="mb-0"><?php echo $_SESSION["User"]; ?></h6>
-                            <span>Admin</span>
+                            <!-- <span>Admin</span> -->
                         </div>
                     </div>
                     <div class="navbar-nav w-100">
-                        <a href="index.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>หน้าหลัก</a>
-                        <a href="typesport.php" class="nav-item nav-link "><i class="fa fa-grip-horizontal me-2"></i>หมวดหมู่</a>
-                        <a href="sport.php" class="nav-item nav-link "><i class="fa fa-baseball-ball me-2"></i>อุปกรณ์กีฬา</a>
-                        <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a>
-                        <a href="borrow.php" class="nav-item nav-link "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a>
-                        <a href="showborrow.php" class="nav-item nav-link active "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a>
+                        <a href="user_index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>หน้าหลัก</a>
+                        <!-- <a href="typesport.php" class="nav-item nav-link "><i class="fa fa-grip-horizontal me-2"></i>หมวดหมู่</a> -->
+                        <a href="user_sport.php" class="nav-item nav-link "><i class="fa fa-baseball-ball me-2"></i>อุปกรณ์กีฬา</a>
+                        <!-- <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a> -->
+                        <!-- <a href="user_borrow.php" class="nav-item nav-link "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a> -->
+                        <!-- <a href="showborrow.php" class="nav-item nav-link "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a> -->
+
                     </div>
                 </nav>
             </div>
             <!-- Sidebar End -->
 
-            <?php include 'navbar.php'; ?>
+            <?php include 'userNavbar.php'; ?>
+
+            
 
 
-
-
-            <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">รายงานการยืม-คืน</h6>
                         <!-- <a href="">Show All</a> -->
-                        <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">ยืม</button></a>
+                        <!-- <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">ยืม</button></a> -->
 
                     </div>
                     <div class="table-responsive">
@@ -68,7 +69,8 @@ if (!$_SESSION["UserID"]) {  //check session
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ชื่อ</th>
                                     <th scope="col">วันที่ยืม</th>
-                                    <th scope="col">วันที่คืน</th>
+                                    <th scope="col">จำนวนที่ยืม</th>
+
                                     <th scope="col">สถาณะ</th>
                                     <!-- <th scope="col">แก้ไข\ลบ </th> -->
                                 </tr>
@@ -76,14 +78,15 @@ if (!$_SESSION["UserID"]) {  //check session
                             <tbody>
 
                                 <?php include 'connection.php';
-
+                                    $student_id = $_SESSION["student_id"];
+                                    echo $student_id;
                                 $sql = "
                                     SELECT borrow.borrow_id,borrow.student_id,borrow.sport_id,borrow.start_date,borrow.end_date 
                                     ,borrow.number, borrow.status ,user.Firstname ,user.Lastname ,
                                     sports_equipment.sport_name ,sports_equipment.sport_name FROM borrow 
                                     INNER JOIN user on borrow.student_id = user.student_id 
                                     INNER JOIN sports_equipment on borrow.sport_id = sports_equipment.sport_id
-                                    where borrow.status = 1";
+                                    where borrow.student_id = $student_id";
                                 $result = $con->query($sql);
                                 $num = 0;
                                 if ($result->num_rows > 0) {
@@ -95,17 +98,19 @@ if (!$_SESSION["UserID"]) {  //check session
                                         <!--  -->
                                         <tr>
                                             <td><?= $num += 1 ?></td>
-                                            <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
+                                            <td><?= $row['Firstname'] . ' ' . $row['Firstname'] ?></td>
                                             <td><?= $row['start_date'] ?></td>
-                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['number'] ?></td>
 
-                                            <td><?php if( $row['status'] == 1){
-                                                    echo 'รับคืนแล้ว';
-                                            } ?></td>
-                                            <td>
-                                                <!-- <a class="btn btn-primary m-2" href="editborrow.php?sport_id=<?= $row['sport_id']; ?>&borrow_id=<?= $row['borrow_id']?>&number=<?= $row["number"];?>">รับคืน</a>
-                                                <a class="btn btn-warning m-2" href="formedit_borrow.php?borrow_id=<?php echo $row["borrow_id"]; ?>">แก้ไข</a> -->
-                                            </td>
+                                            <td><?php if ($row['status'] == 0) {
+                                                    echo 'ยังไม่ได้รับคืน';
+                                                } else{
+                                                    echo 'คืนแล้ว';
+                                                }?></td>
+                                            <!-- <td>
+                                                <a class="btn btn-primary m-2" href="editborrow.php?sport_id=<?= $row['sport_id']; ?>&borrow_id=<?= $row['borrow_id'] ?>&number=<?= $row["number"]; ?>">รับคืน</a>
+                                                <a class="btn btn-warning m-2" href="formedit_borrow.php?borrow_id=<?php echo $row["borrow_id"]; ?>">แก้ไข</a>
+                                            </td> -->
                                         </tr>
                                 <?php  }
                                 } else {

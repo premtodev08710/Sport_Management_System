@@ -19,8 +19,8 @@
                             <span class="d-none d-lg-inline-flex"><?php echo $_SESSION["User"];?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="profile.php" class="dropdown-item">My Profile</a>
-                            <a href="setingpassword.php" class="dropdown-item">Settings</a>
+                            <a href="userprofile.php" class="dropdown-item">My Profile</a>
+                            <a href="usersetingpassword.php" class="dropdown-item">Settings</a>
                             <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
