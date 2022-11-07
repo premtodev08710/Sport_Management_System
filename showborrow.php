@@ -31,7 +31,7 @@ if (!$_SESSION["UserID"]) {  //check session
                             <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                         </div>
                         <div class="ms-3">
-                            <h6 class="mb-0"><?php echo $_SESSION["User"]; ?></h6>
+                            <h6 class="mb-0"><?php include 'name.php';?></h6>
                             <span>Admin</span>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                     sports_equipment.sport_name ,sports_equipment.sport_name FROM borrow 
                                     INNER JOIN user on borrow.student_id = user.student_id 
                                     INNER JOIN sports_equipment on borrow.sport_id = sports_equipment.sport_id
-                                    where borrow.status = 1";
+                                    where borrow.status = 1 ORDER BY borrow.end_date;";
                                 $result = $con->query($sql);
                                 $num = 0;
                                 if ($result->num_rows > 0) {
@@ -97,7 +97,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                             <td><?= $num += 1 ?></td>
                                             <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
                                             <td><?= $row['start_date'] ?></td>
-                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['end_date'] ?></td>
 
                                             <td><?php if( $row['status'] == 1){
                                                     echo 'รับคืนแล้ว';

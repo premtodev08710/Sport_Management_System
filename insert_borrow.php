@@ -12,7 +12,7 @@ $result1 = $con->query($sql1);
 if ($result1->num_rows > 0) {
     // output data of each row
     while ($row = $result1->fetch_assoc()) {
-        // echo 'ff';
+      
         $balance =$row['balance'];
         $number1 = $row['balance'] - $number;
         echo $number;
@@ -26,6 +26,7 @@ if ($balance < $number ){
   echo "</script>";
 }
 else{
+  
   $start_date = date("Y-m-d");
   $end_date = date("Y-m-d");
   $sql = "INSERT INTO `borrow` (`borrow_id`, `student_id`, `sport_id`, `start_date`, `end_date`, `number`, `status`)

@@ -31,7 +31,7 @@ if (!$_SESSION["UserID"]) {  //check session
                             <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                         </div>
                         <div class="ms-3">
-                            <h6 class="mb-0"><?php echo $_SESSION["User"]; ?></h6>
+                            <h6 class="mb-0"><?php include 'name.php';?></h6>
                             <span>Admin</span>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ if (!$_SESSION["UserID"]) {  //check session
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
                             // $id = ; 
-                            echo $row['sport_id'];
+                            // echo $row['sport_id'];
                     ?>
                             <div class="col-sm-12 col-xl-12">
                                 <div class="bg-light rounded h-100 p-4">

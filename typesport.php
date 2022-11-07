@@ -32,7 +32,7 @@ if (!$_SESSION["UserID"]){  //check session
                             <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                         </div>
                         <div class="ms-3">
-                            <h6 class="mb-0"><?php echo $_SESSION["User"]; ?></h6>
+                            <h6 class="mb-0"><?php include 'name.php';?></h6>
                             <span>Admin</span>
                         </div>
                     </div>
@@ -92,7 +92,7 @@ if (!$_SESSION["UserID"]){  //check session
                                                 } else {
                                                     echo 'ปิดใช้งาน';
                                                 } ?></td>
-                                            <td><a href="formedit_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>; ?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                            <td><a href="formedit_typesport.php?typesport_id=<?= $row["typesport_id"]?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                                 <a class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>">ลบ</a>
                                             </td>
 

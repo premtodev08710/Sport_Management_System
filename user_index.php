@@ -32,7 +32,7 @@ if (!$_SESSION["UserID"]) {  //check session
                             <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                         </div>
                         <div class="ms-3">
-                            <h6 class="mb-0"><?php echo $_SESSION["User"]; ?></h6>
+                            <h6 class="mb-0"><?php include 'name.php';?></h6>
                             <!-- <span>Admin</span> -->
                         </div>
                     </div>
@@ -79,14 +79,14 @@ if (!$_SESSION["UserID"]) {  //check session
 
                                 <?php include 'connection.php';
                                     $student_id = $_SESSION["student_id"];
-                                    echo $student_id;
+                                    
                                 $sql = "
                                     SELECT borrow.borrow_id,borrow.student_id,borrow.sport_id,borrow.start_date,borrow.end_date 
                                     ,borrow.number, borrow.status ,user.Firstname ,user.Lastname ,
                                     sports_equipment.sport_name ,sports_equipment.sport_name FROM borrow 
                                     INNER JOIN user on borrow.student_id = user.student_id 
                                     INNER JOIN sports_equipment on borrow.sport_id = sports_equipment.sport_id
-                                    where borrow.student_id = $student_id";
+                                    where borrow.student_id = $student_id ORDER BY borrow.end_date;";
                                 $result = $con->query($sql);
                                 $num = 0;
                                 if ($result->num_rows > 0) {
