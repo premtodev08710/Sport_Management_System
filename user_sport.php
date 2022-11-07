@@ -33,23 +33,23 @@ if (!$_SESSION["UserID"]){  //check session
                     </div>
                     <div class="ms-3">
                     <h6 class="mb-0"><?php echo $_SESSION["User"]; ?></h6>
-                            <span>Admin</span>
+                            <!-- <span>Admin</span> -->
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                <a href="index.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>หน้าหลัก</a>
-                    <a href="typesport.php" class="nav-item nav-link "><i class="fa fa-grip-horizontal me-2"></i>หมวดหมู่</a>
-                    <a href="sport.php" class="nav-item nav-link active"><i class="fa fa-baseball-ball me-2"></i>อุปกรณ์กีฬา</a>
-                    <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a>
-                    <a href="borrow.php" class="nav-item nav-link "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a>
-                    <a href="showborrow.php" class="nav-item nav-link "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a>
+                        <a href="user_index.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>หน้าหลัก</a>
+                        <!-- <a href="typesport.php" class="nav-item nav-link "><i class="fa fa-grip-horizontal me-2"></i>หมวดหมู่</a> -->
+                        <a href="user_sport.php" class="nav-item nav-link active "><i class="fa fa-baseball-ball me-2"></i>อุปกรณ์กีฬา</a>
+                        <!-- <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a> -->
+                        <!-- <a href="user_borrow.php" class="nav-item nav-link "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a> -->
+                        <!-- <a href="showborrow.php" class="nav-item nav-link "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a> -->
 
-                </div>
+                    </div>
             </nav>
         </div>
         <!-- Sidebar End -->
 
-        <?php include 'navbar.php'; ?>
+        <?php include 'userNavbar.php'; ?>
 
 
 
@@ -59,7 +59,7 @@ if (!$_SESSION["UserID"]){  //check session
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">รายการอุปกรณ์</h6>
-                    <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">เพิ่มอุปกรณ์</button></a>
+                    <!-- <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">เพิ่มอุปกรณ์</button></a> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -70,7 +70,7 @@ if (!$_SESSION["UserID"]){  //check session
                                 <th scope="col">ประเภท</th>
                                 <th scope="col">คงเหลือ</th>
                                 <th scope="col">จำนวนทั้งหมด</th>
-                                <th scope="col">แก้ไข\ลบ </th>
+                                <!-- <th scope="col">แก้ไข\ลบ </th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -89,10 +89,10 @@ if (!$_SESSION["UserID"]){  //check session
                                 <td><?php echo $row['name'] ?></td>
                                 <td><?php echo $row['balance'] ?></td>
                                 <td><?php echo $row['number'] ?></td>
-                                <td><a href="formedit_sport.php?sport_id=<?php echo $row["sport_id"];?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                <!-- <td><a href="formedit_sport.php?sport_id=<?php echo $row["sport_id"];?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                                 <a  class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_sport.php?sport_id=<?php echo $row["sport_id"];?>">ลบ</a>
                                                 
-                                </td>
+                                </td> -->
                             </tr>
                             <?php  }
                                     } else {

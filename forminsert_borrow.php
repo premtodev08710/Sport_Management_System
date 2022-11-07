@@ -1,12 +1,11 @@
+<?php session_start(); ?>
+<?php
 
-<?php session_start();?>
-<?php 
- 
-if (!$_SESSION["UserID"]){  //check session
- 
-	  Header("Location: signin.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
- 
-}else{?>
+if (!$_SESSION["UserID"]) {  //check session
+
+    Header("Location: signin.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
+
+} else { ?>
     <?php include 'head.php'; ?>
 
     <body>
@@ -38,10 +37,10 @@ if (!$_SESSION["UserID"]){  //check session
                     </div>
                     <div class="navbar-nav w-100">
                         <a href="index.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>หน้าหลัก</a>
-                        <a href="typesport.php" class="nav-item nav-link active"><i class="fa fa-grip-horizontal me-2"></i>หมวดหมู่</a>
+                        <a href="typesport.php" class="nav-item nav-link "><i class="fa fa-grip-horizontal me-2"></i>หมวดหมู่</a>
                         <a href="sport.php" class="nav-item nav-link "><i class="fa fa-baseball-ball me-2"></i>อุปกรณ์กีฬา</a>
                         <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a>
-                        <a href="borrow.php" class="nav-item nav-link "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a>
+                        <a href="borrow.php" class="nav-item nav-link active "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a>
                         <a href="showborrow.php" class="nav-item nav-link "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a>
 
                     </div>
@@ -49,9 +48,7 @@ if (!$_SESSION["UserID"]){  //check session
             </div>
             <!-- Sidebar End -->
 
-            <?php
-            //  echo $_GET["member_id"];
-            include 'navbar.php'; ?>
+            <?php include 'navbar.php'; ?>
 
 
 
@@ -60,23 +57,22 @@ if (!$_SESSION["UserID"]){  //check session
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">รายงานประเภทอุปกรณ์</h6>
-                        <a href="forminsert_typesport.php"><button class='btn btn-sm btn-success'>เพิ่มประเภท</button></a>
+                        <h6 class="mb-0">รายงานอุปกรณ์กีฬา</h6>
+                        <form action="insert_borrow.php" method="post">
+                            <button class='btn btn-sm btn-success'>บันทึก</button></a>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">ลำดับ</th>
-                                    <th scope="col">ชื่อประเภท</th>
-                                    <th scope="col">สถาณะ</th>
-                                    <th scope="col">แก้ไข\ลบ </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">ยืมอุปการณ์</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="student_id" class="form-control" id="floatingInput">
+                                <label for="floatingInput">รหัสนักเรียน</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select name="sport_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                    <option  selected>กรุณาเลือกอุปกรณ์กีฬา</option>
                                     <?php include 'connection.php';
-                                    $sql = "SELECT * FROM `type_sport`";
+                                    $sql = "SELECT * FROM `sports_equipment` where balance > 0";
                                     $result = $con->query($sql);
                                     $num = 0;
                                     if ($result->num_rows > 0) {
@@ -84,26 +80,24 @@ if (!$_SESSION["UserID"]){  //check session
                                         while ($row = $result->fetch_assoc()) {
                                             // $id = ; 
                                     ?>
-                                            <td><?php $num = $num + 1;
-                                                echo $num; ?></td>
-                                            <td><?php echo $row["name"]; ?></td>
-                                            <td><?php if ($row["status"] == 1) {
-                                                    echo 'ใช้งาน';
-                                                } else {
-                                                    echo 'ปิดใช้งาน';
-                                                } ?></td>
-                                            <td><a href="formedit_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>; ?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                                <a class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>">ลบ</a>
-                                            </td>
+                                            <option value="<?php echo $row['sport_id'] ?>"><?php echo $row['sport_name'] ?></option>
 
-                                </tr>
-                        <?php  }
+                                    <?php  }
                                     } else {
                                         echo "0 results";
                                     }
                                     $con->close(); ?>
-                            </tbody>
-                        </table>
+                                </select>
+                                <label for="floatingSelect">ประเภทอุปกรณ์กีฬา </label>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <input type="text" name="number" class="form-control" id="floatingInput">
+                                <label for="floatingInput">จำนวน/ชิ้น</label>
+                            </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

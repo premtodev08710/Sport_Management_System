@@ -23,7 +23,7 @@ if (!$_SESSION["UserID"]) {  //check session
             <div class="sidebar pe-4 pb-3">
                 <nav class="navbar bg-light navbar-light">
                     <a href="index.html" class="navbar-brand mx-4 mb-3">
-                        <h3 class="text-primary"></i>ระบบยืม-คืน</h3>
+                        <h3 class="text-primary">ระบบยืม-คืน</h3>
                     </a>
                     <div class="d-flex align-items-center ms-4 mb-4">
                         <div class="position-relative">
@@ -57,24 +57,16 @@ if (!$_SESSION["UserID"]) {  //check session
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">รายงานผู้ใช้งาน</h6>
-                        <a href="forminsert_user.php"><button class="btn btn-sm btn-success">เพิ่มผู้ใช่งาน</button></a>
+                        <h6 class="mb-0">รายงาน</h6>
+                        <form action="update_user.php" method="post">
+                            <button class='btn btn-sm btn-success'>บันทึก</button></a>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">รหัสนักเรียน</th>
-                                    <th scope="col">ชื่อ</th>
-                                    <th scope="col">นามสกุล</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">สถาณะ</th>
-                              
-                                    <th scope="col">แก้ไข\ลบ </th>
-                                </tr>
-                            </thead>
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">เพิ่ม</h6>
                             <?php include 'connection.php';
-                            $sql = "SELECT * FROM `user`";
+                            $ID = $_GET['ID'];
+                            $sql = "SELECT * FROM `user` WHERE `ID` = $ID";
                             $result = $con->query($sql);
                             $num = 0;
                             if ($result->num_rows > 0) {
@@ -82,29 +74,51 @@ if (!$_SESSION["UserID"]) {  //check session
                                 while ($row = $result->fetch_assoc()) {
                                     // $id = ; 
                             ?>
-                                    <tbody>
-                                        <tr>
-                                            <td><?= $row['student_id']; ?></td>
-                                            <td><?= $row['Firstname']; ?></td>
-                                            <td><?= $row['Lastname']; ?></td>
-                                            <td><?= $row['Username']; ?></td>
-                                            <td><?php if ($row['Userlevel'] == 'M'){
-                                                echo 'นักเรียน';
-                                            }else{
-                                                echo 'ผู้ดูเลระบบ';
-                                            }?></td>
-                                            
-                                            <td><a href="formedit_user.php?ID=<?php echo $row["ID"]; ?>" class="btn btn-sm btn-warning" >แก้ไข</a>
-                                                <a class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_user.php?ID=<?php echo $row["ID"]; ?>">ลบ</a>
-                                            </td>
-                                        </tr>
-                                <?php  }
+
+                                    <div class="form-floating mb-3">
+                                        <input value="<?= $row['ID']; ?>" type="hidden" name="ID" class="form-control" id="floatingInput">
+                                        <input value="<?= $row['student_id']; ?>" type="text" name="student_id" class="form-control" id="floatingInput">
+                                        <label for="floatingInput">รหัสนักเรียน</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input value="<?= $row['Firstname']; ?>" type="text" name="Firstname" class="form-control" id="floatingInput">
+                                        <label for="floatingInput">ชื่อ</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input value="<?= $row['Lastname']; ?>" type="text" name="Lastname" class="form-control" id="floatingInput">
+                                        <label for="floatingInput">นามสกุล</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input value="<?= $row['Username']; ?>" type="email" name="Username" class="form-control" id="floatingInput">
+                                        <label for="floatingInput">Email</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select name="Userlevel" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+
+                                            <option <?php echo $row['Userlevel'];
+                                                    if ($row['Userlevel'] == 'M') {
+                                                        echo 'selected';
+                                                    } else {
+                                                        echo ' ';
+                                                    } ?> value="M">นักเรียน</option>
+                                            <option <?php if ($row['Userlevel'] == 'A') {
+                                                        echo 'selected';
+                                                    } else {
+                                                        echo ' ';
+                                                    } ?> value="A">ผู้ดูเลระบบ</option>
+
+                                        </select>
+                                        <label for="floatingSelect">สถาณะ</label>
+                                    </div>
+
+
+                            <?php  }
                             } else {
                                 echo "0 results";
                             }
                             $con->close(); ?>
-                                    </tbody>
-                        </table>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
