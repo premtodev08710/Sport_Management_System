@@ -92,7 +92,7 @@ if (!$_SESSION["UserID"]){  //check session
                                                 } else {
                                                     echo 'ปิดใช้งาน';
                                                 } ?></td>
-                                            <td><a href="formedit_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                            <td><a href="formedit_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>; ?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                                 <a class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>">ลบ</a>
                                             </td>
 
