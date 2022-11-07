@@ -42,7 +42,6 @@ if (!$_SESSION["UserID"]) {  //check session
                         <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a>
                         <a href="borrow.php" class="nav-item nav-link "><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a>
                         <a href="showborrow.php" class="nav-item nav-link active "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a>
-
                     </div>
                 </nav>
             </div>
@@ -70,7 +69,6 @@ if (!$_SESSION["UserID"]) {  //check session
                                     <th scope="col">ชื่อ</th>
                                     <th scope="col">วันที่ยืม</th>
                                     <th scope="col">วันที่คืน</th>
-
                                     <th scope="col">สถาณะ</th>
                                     <!-- <th scope="col">แก้ไข\ลบ </th> -->
                                 </tr>
@@ -85,7 +83,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                     sports_equipment.sport_name ,sports_equipment.sport_name FROM borrow 
                                     INNER JOIN user on borrow.student_id = user.student_id 
                                     INNER JOIN sports_equipment on borrow.sport_id = sports_equipment.sport_id
-                                    where borrow.number = 1";
+                                    where borrow.status = 1";
                                 $result = $con->query($sql);
                                 $num = 0;
                                 if ($result->num_rows > 0) {

@@ -85,7 +85,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                     sports_equipment.sport_name ,sports_equipment.sport_name FROM borrow 
                                     INNER JOIN user on borrow.student_id = user.student_id 
                                     INNER JOIN sports_equipment on borrow.sport_id = sports_equipment.sport_id
-                                    where borrow.number = 0";
+                                    where borrow.status = 0";
                                 $result = $con->query($sql);
                                 $num = 0;
                                 if ($result->num_rows > 0) {
