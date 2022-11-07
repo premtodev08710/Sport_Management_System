@@ -44,6 +44,15 @@
 
 
 
+<<<<<<< Updated upstream
+=======
+                                        <!--  -->
+                                        <tr>
+                                            <td><?= $num += 1 ?></td>
+                                            <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
+                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['start_date'] ?></td>
+>>>>>>> Stashed changes
 
         <!-- Recent Sales Start -->
         <div class="container-fluid pt-4 px-4">

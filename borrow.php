@@ -26,6 +26,7 @@
                         <h6 class="mb-0">Jhon Doe</h6>
                         <span>Admin</span>
                     </div>
+<<<<<<< Updated upstream
                 </div>
                 <div class="navbar-nav w-100">
                 <a href="index.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>หน้าหลัก</a>
@@ -34,6 +35,24 @@
                     <a href="user.php" class="nav-item nav-link "><i class="fa fa-user-alt me-2"></i>สมาชิก</a>
                     <a href="borrow.php" class="nav-item nav-link active"><i class="fa fa-user-edit me-2"></i>ยืม-คืน</a>
                     <a href="showborrow.php" class="nav-item nav-link "><i class="fa fa-user-check  me-2"></i>ประวัติการยืม</a>
+=======
+                </nav>
+            </div>
+            <!-- Sidebar End -->
+
+            <?php include 'navbar.php'; ?>
+
+
+
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">รายงานการยืม-คืน</h6>
+                        <!-- <a href="">Show All</a> -->
+                        <a href="forminsert_borrow.php"><button class="btn btn-sm btn-success">ยืม</button></a>
+>>>>>>> Stashed changes
 
                 </div>
             </nav>
@@ -44,6 +63,15 @@
 
 
 
+<<<<<<< Updated upstream
+=======
+                                        <!--  -->
+                                        <tr>
+                                            <td><?= $num += 1 ?></td>
+                                            <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
+                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['number'] ?></td>
+>>>>>>> Stashed changes
 
         <!-- Recent Sales Start -->
         <div class="container-fluid pt-4 px-4">
