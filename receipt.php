@@ -324,7 +324,7 @@
                                                     INNER JOIN user on user.student_id = borrow.student_id 
                                                     WHERE receipt.borrow_id = $ID ; ";
                                                     $result = $con->query($sql);
-                                             
+
                                                     if ($result->num_rows > 0) {
                                                         // output data of each row
                                                         while ($row = $result->fetch_assoc()) {
@@ -335,28 +335,48 @@
                                                             </td>
                                                 </tr>
                                                 <tr>
+
+
                                                     <td class="content-block">
                                                         <table class="invoice">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td> ชื่อ-สกุล : <?=$row['Firstname'].' '.$row['Lastname']?><br>รหัสการยืม #<?= $row['borrow_id'];?><br>วันที่ออกใบเสร็จ : <?php  echo date("Y-m-d h:i:sa") ?></td>
+                                                                    <td> ชื่อ-สกุล : <?= $row['Firstname'] . ' ' . $row['Lastname'] ?><br>รหัสการยืม #<?= $row['borrow_id']; ?><br>วันที่ออกใบเสร็จ :
+                                                                        <?php
+                                                                        function DateThai($strDate)
+                                                                        {
+                                                                            $strYear = date("Y", strtotime($strDate)) + 543;
+                                                                            $strMonth = date("n", strtotime($strDate));
+                                                                            $strDay = date("j", strtotime($strDate));
+                                                                            $strHour = date("H", strtotime($strDate))+7;
+                                                                            $strMinute = date("i", strtotime($strDate));
+                                                                            $strSeconds = date("s", strtotime($strDate));
+                                                                            $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+                                                                            $strMonthThai = $strMonthCut[$strMonth];
+                                                                            return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
+                                                                        }
+
+                                                                        $strDate = date("Y-m-d h:i");
+                                                                        echo  DateThai($strDate);
+                                                                        ?>
+                                                                        </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <table class="invoice-items" cellpadding="0" cellspacing="0">
                                                                             <tbody>
-                                                                            <tr>
+                                                                                <tr>
                                                                                     <td>จำนวนวันที่เกินกำหนด</td>
-                                                                                    <td class="alignright"><?= $row['date'];?></td>
+                                                                                    <td class="alignright"><?= $row['date']; ?></td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td>ราคาต่อวัน</td>
                                                                                     <td class="alignright">20 ฿</td>
                                                                                 </tr>
-                                                                                
+
                                                                                 <tr class="total">
                                                                                     <td class="alignright" width="80%">รวม</td>
-                                                                                    <td class="alignright"><?= $row['price'];?>  ฿</td>
+                                                                                    <td class="alignright"><?= $row['price']; ?> ฿</td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
