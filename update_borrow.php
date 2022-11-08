@@ -56,7 +56,7 @@ echo "</script>";
      echo "</script>";
      echo $sql0;
  }
-  $sql0 = "UPDATE `borrow` SET `number` = '$number'  WHERE `borrow_id` = '$borrow_id';";
+  $sql0 = "UPDATE `borrow` SET `number` = '$number', `student_id` = '$student_id'  WHERE `borrow_id` = '$borrow_id';";
   // ยืมต่อ
   if ($con->query($sql0) === TRUE) {
         echo "<script type='text/javascript'>";
