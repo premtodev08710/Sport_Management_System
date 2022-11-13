@@ -65,12 +65,12 @@ if (!$_SESSION["UserID"]) {  //check session
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-dark">
+                                <tr align="center" class="text-dark"> 
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ชื่อ</th>
-                                    <th scope="col">วันที่ยืม</th>
+                                    <th scope="col">ชื่ออุปกรณ์</th>
                                     <th scope="col">จำนวนที่ยืม</th>
-
+                                    <th scope="col">วันที่ยืม</th>
                                     <th scope="col">สถาณะ</th>
                                     <th scope="col">แก้ไข\ลบ </th>
                                 </tr>
@@ -95,19 +95,19 @@ if (!$_SESSION["UserID"]) {  //check session
                                 ?>
 
                                         <!--  -->
-                                        <tr>
+                                        <tr align="center" >
                                             <td><?= $num += 1 ?></td>
                                             <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
-                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['sport_name'] ?></td>
                                             <td><?= $row['number'] ?></td>
-
+                                            <td><?= $row['start_date'] ?></td>
                                             <td><?php if ($row['status'] == 0) {
                                                     echo 'ยังไม่ได้รับคืน';
                                                 } ?></td>
                                             <td>
                                                 <a class="btn btn-primary m-2" href="editborrow.php?sport_id=<?= $row['sport_id']; ?>&borrow_id=<?= $row['borrow_id'] ?>&number=<?= $row["number"]; ?>">รับคืน</a>
                                                 <a class="btn btn-warning m-2" href="formedit_borrow.php?borrow_id=<?php echo $row["borrow_id"]; ?>">แก้ไข</a>
-                                            </td>
+                                            </td> 
                                         </tr>
                                 <?php  }
                                 } else {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ใบเสร็จค่าปรับ</title>
     <style>
         /* -------------------------------------
     GLOBAL
@@ -371,7 +371,7 @@
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td>ราคาต่อวัน</td>
-                                                                                    <td class="alignright">20 ฿</td>
+                                                                                    <td class="alignright">5 ฿</td>
                                                                                 </tr>
 
                                                                                 <tr class="total">

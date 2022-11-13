@@ -58,15 +58,17 @@ if (!$_SESSION["UserID"]) {  //check session
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">รายงานการยืม-คืน</h6>
                         <!-- <a href="">Show All</a> -->
-                        <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">ยืม</button></a>
+                        <!-- <a href="forminsert_sport.php"><button class="btn btn-sm btn-success">ยืม</button></a> -->
 
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-dark">
+                            <tr align="center" class="text-dark">
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ชื่อ</th>
+                                    <th scope="col">ชื่ออุปกรณ์</th>
+                                    <th scope="col">จำนวนที่ยืม</th>
                                     <th scope="col">วันที่ยืม</th>
                                     <th scope="col">วันที่คืน</th>
                                     <th scope="col">สถาณะ</th>
@@ -93,19 +95,20 @@ if (!$_SESSION["UserID"]) {  //check session
                                 ?>
 
                                         <!--  -->
-                                        <tr>
+                                        <tr align="center" >
                                             <td><?= $num += 1 ?></td>
                                             <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
+                                            <td><?= $row['sport_name'] ?></td>
+                                            <td><?= $row['number'] ?></td>
                                             <td><?= $row['start_date'] ?></td>
                                             <td><?= $row['end_date'] ?></td>
-
                                             <td><?php if( $row['status'] == 1){
                                                     echo 'รับคืนแล้ว';
                                             } ?></td>
-                                            <td>
+                                            <!-- <td> -->
                                                 <!-- <a class="btn btn-primary m-2" href="editborrow.php?sport_id=<?= $row['sport_id']; ?>&borrow_id=<?= $row['borrow_id']?>&number=<?= $row["number"];?>">รับคืน</a>
                                                 <a class="btn btn-warning m-2" href="formedit_borrow.php?borrow_id=<?php echo $row["borrow_id"]; ?>">แก้ไข</a> -->
-                                            </td>
+                                            <!-- </td> -->
                                         </tr>
                                 <?php  }
                                 } else {

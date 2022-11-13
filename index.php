@@ -62,7 +62,7 @@ if (!$_SESSION["UserID"]) {  //check session
                     $rowcountborrow1 = mysqli_num_rows($resultborrow1);
 
                     ?>
-                    <div class="col-sm-6 col-xl-3">
+                    <div align="center" class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
@@ -78,7 +78,7 @@ if (!$_SESSION["UserID"]) {  //check session
                     $rowcountborrow = mysqli_num_rows($resultborrow);
 
                     ?>
-                    <div class="col-sm-6 col-xl-3">
+                    <div align="center" class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
@@ -95,7 +95,7 @@ if (!$_SESSION["UserID"]) {  //check session
 
                     ?>
 
-                    <div class="col-sm-6 col-xl-3">
+                    <div align="center" class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
@@ -111,7 +111,7 @@ if (!$_SESSION["UserID"]) {  //check session
                     $rowcount = mysqli_num_rows($result);
 
                     ?>
-                    <div class="col-sm-6 col-xl-3">
+                    <div align="center" class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
@@ -125,7 +125,7 @@ if (!$_SESSION["UserID"]) {  //check session
             <!-- Sale & Revenue End -->
 
 
-            <div class="container-fluid pt-4 px-4">
+            <div align="center" class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">รายงานการยืม-คืน</h6>
@@ -136,12 +136,12 @@ if (!$_SESSION["UserID"]) {  //check session
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-dark">
+                                <tr align="center" class="text-dark">
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ชื่อ</th>
-                                    <th scope="col">วันที่ยืม</th>
+                                    <th scope="col">ชื่ออุปกรณ์</th>
                                     <th scope="col">จำนวนที่ยืม</th>
-
+                                    <th scope="col">วันที่ยืม</th>
                                     <th scope="col">สถาณะ</th>
                                     <th scope="col">แก้ไข\ลบ </th>
                                 </tr>
@@ -166,12 +166,12 @@ if (!$_SESSION["UserID"]) {  //check session
                                 ?>
 
                                         <!--  -->
-                                        <tr>
+                                        <tr align="center" >
                                             <td><?= $num += 1 ?></td>
                                             <td><?= $row['Firstname'] . ' ' . $row['Firstname'] ?></td>
-                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['sport_name'] ?></td>
                                             <td><?= $row['number'] ?></td>
-
+                                            <td><?= $row['start_date'] ?></td>
                                             <td><?php if ($row['status'] == 0) {
                                                     echo 'ยังไม่ได้รับคืน';
                                                 } ?></td>

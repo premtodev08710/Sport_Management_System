@@ -61,8 +61,8 @@ if ($con->query($sql0) === TRUE) {
         echo "window.location = 'borrow.php';";
         echo "</script>";
       } else { 
-
-        $price = $summary * 20;
+        // ราคาค่าปรับ
+        $price = $summary * 5;
         $sql = "INSERT INTO `receipt`(`borrow_id`, `date`, `price`)
          VALUES ('$borrow_id','$summary','$price')";
         if ($con->multi_query($sql) === TRUE) {

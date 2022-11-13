@@ -63,7 +63,7 @@ if (!$_SESSION["UserID"]) {  //check session
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-dark">
+                                <tr align="center" class="text-dark">
                                     <th scope="col">รหัสนักเรียน</th>
                                     <th scope="col">ชื่อ</th>
                                     <th scope="col">นามสกุล</th>
@@ -83,7 +83,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                     // $id = ; 
                             ?>
                                     <tbody>
-                                        <tr>
+                                        <tr align="center" >
                                             <td><?= $row['student_id']; ?></td>
                                             <td><?= $row['Firstname']; ?></td>
                                             <td><?= $row['Lastname']; ?></td>

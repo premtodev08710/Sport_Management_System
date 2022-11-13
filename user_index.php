@@ -68,9 +68,10 @@ if (!$_SESSION["UserID"]) {  //check session
                                 <tr class="text-dark">
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ชื่อ</th>
-                                    <th scope="col">วันที่ยืม</th>
+                                    <th scope="col">ชื่ออุปกรณ์</th>
                                     <th scope="col">จำนวนที่ยืม</th>
-
+                                    <th scope="col">วันที่ยืม</th>
+                                    <th scope="col">วันที่คืน</th>
                                     <th scope="col">สถาณะ</th>
                                     <!-- <th scope="col">แก้ไข\ลบ </th> -->
                                 </tr>
@@ -97,14 +98,15 @@ if (!$_SESSION["UserID"]) {  //check session
 
                                         <!--  -->
                                         <tr>
-                                            <td><?= $num += 1 ?></td>
-                                            <td><?= $row['Firstname'] . ' ' . $row['Firstname'] ?></td>
-                                            <td><?= $row['start_date'] ?></td>
+                                        <td><?= $num += 1 ?></td>
+                                            <td><?= $row['Firstname'] . ' ' . $row['Lastname'] ?></td>
+                                            <td><?= $row['sport_name'] ?></td>
                                             <td><?= $row['number'] ?></td>
-
+                                            <td><?= $row['start_date'] ?></td>
+                                            <td><?= $row['end_date'] ?></td>
                                             <td><?php if ($row['status'] == 0) {
                                                     echo 'ยังไม่ได้รับคืน';
-                                                } else{
+                                                }else{
                                                     echo 'คืนแล้ว';
                                                 }?></td>
                                             <!-- <td>

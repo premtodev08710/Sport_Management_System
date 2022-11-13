@@ -64,7 +64,7 @@ if (!$_SESSION["UserID"]){  //check session
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
                         <thead>
-                            <tr class="text-dark">
+                            <tr align="center" class="text-dark">
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">ชื่อ</th>
                                 <th scope="col">ประเภท</th>
@@ -83,7 +83,7 @@ if (!$_SESSION["UserID"]){  //check session
                                         while ($row = $result->fetch_assoc()) {
                                             // $id = ; 
                                     ?>
-                            <tr>
+                            <tr align="center" >
                                 <td><?php echo $num++; ?></td>
                                 <td><?php echo $row['sport_name'] ?></td>
                                 <td><?php echo $row['name'] ?></td>

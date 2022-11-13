@@ -66,7 +66,7 @@ if (!$_SESSION["UserID"]){  //check session
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-dark">
+                                <tr align="center" class="text-dark">
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ชื่อประเภท</th>
                                     <th scope="col">สถาณะ</th>
@@ -84,6 +84,7 @@ if (!$_SESSION["UserID"]){  //check session
                                         while ($row = $result->fetch_assoc()) {
                                             // $id = ; 
                                     ?>
+                                    <tr align="center" >
                                             <td><?php $num = $num + 1;
                                                 echo $num; ?></td>
                                             <td><?php echo $row["name"]; ?></td>
@@ -95,7 +96,7 @@ if (!$_SESSION["UserID"]){  //check session
                                             <td><a href="formedit_typesport.php?typesport_id=<?= $row["typesport_id"]?>" class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                                 <a class="btn btn-sm btn-danger" onClick="return confirm('ยืนยันการลบ?')" href="delete_typesport.php?typesport_id=<?php echo $row["typesport_id"]; ?>">ลบ</a>
                                             </td>
-
+                                    </tr>
                                 </tr>
                         <?php  }
                                     } else {
