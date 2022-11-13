@@ -4,10 +4,11 @@ $sport_name = $_POST['sport_name'];
 $balance = $_POST['balance'];
 $number = $_POST['number'];
 $sport_id  = $_POST['sport_id'];
+$status_sport  = $_POST['status_sport'];
 
 include 'connection.php';
 $name = $_POST['name'];
-$sql = "UPDATE `sports_equipment` SET sport_name ='$sport_name',typesport_id	= '$typesport_id',balance= '$balance',number='$number' WHERE `sport_id` = $sport_id ;";
+$sql = "UPDATE `sports_equipment` SET sport_name ='$sport_name',typesport_id	= '$typesport_id',balance= '$balance',number='$number',status_sport='$status_sport' WHERE `sport_id` = $sport_id ;";
 echo $sql;
 if ($con->query($sql) === TRUE) {
   // echo "New record created successfully";

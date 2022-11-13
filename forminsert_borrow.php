@@ -72,7 +72,7 @@ if (!$_SESSION["UserID"]) {  //check session
                                 <select name="sport_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                     <option  selected>กรุณาเลือกอุปกรณ์กีฬา</option>
                                     <?php include 'connection.php';
-                                    $sql = "SELECT * FROM `sports_equipment` where balance > 0";
+                                    $sql = "SELECT * FROM `sports_equipment` where balance > 0 AND `status_sport` = 1; ";
                                     $result = $con->query($sql);
                                     $num = 0;
                                     if ($result->num_rows > 0) {

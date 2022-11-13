@@ -110,6 +110,21 @@ if (!$_SESSION["UserID"]) {  //check session
                                         <input type="number" name="number" value="<?php echo $row['number'] ?>" class="form-control" id="floatingInput">
                                         <label for="floatingInput">จำนวนทั้งหมด</label>
                                     </div>
+                                    <div class="form-floating mb-3">
+                                        <select name="status_sport" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <option selected>เลือกสถานะ</option>
+                                            
+                                                    <option <?php if ($row['status_sport'] == 0 ) {
+                                                                echo 'selected';
+                                                            } ?> value="0"> ปิดใช้งาน </option>
+                                                    <option <?php if ($row['status_sport'] == 1 ) {
+                                                                echo 'selected';
+                                                            } ?> value="1"> ใช้งาน </option>
+
+                                         
+                                        </select>
+                                        <label for="floatingSelect"> ประเภทอุปกรณ์กีฬา </label>
+                                    </div>
                             <?php  }
                             } else {
                                 echo "0 results";
