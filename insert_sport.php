@@ -6,8 +6,8 @@ $typesport_id = $_POST['typesport_id'];
 $balance = $_POST['balance'];
 $number = $_POST['number'];
 
-$sql = "INSERT INTO `sports_equipment` VALUES (NULL, '$sport_name', '$typesport_id', '$balance', '$number');";
-
+$sql = "INSERT INTO `sports_equipment` VALUES (NULL, '$sport_name', '$typesport_id', '$balance', '$number','1');";
+echo $sql;
 if ($con->query($sql) === TRUE) {
   echo "<script type='text/javascript'>";
   echo "alert('บันทึกสำเร็จ');";
@@ -16,7 +16,8 @@ if ($con->query($sql) === TRUE) {
 } else {
   echo "<script type='text/javascript'>";
   echo "alert('error เกิดข้อผิดพลาด !');";
-  echo "window.location = 'sport.php'; ";
+  echo $sql;
+  // echo "window.location = 'sport.php'; ";
   echo "</script>";
 }
 
